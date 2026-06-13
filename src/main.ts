@@ -10,14 +10,14 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  const port = configService.get('APP_PORT') || 4000;
+  const port = configService.get('PORT') || 4000;
 
   app.enableCors({
     origin: (req, callback) => callback(null, true),
   });
   app.use(helmet());
 
-  await app.listen(port, () => {
+  await app.listen(port, '0.0.0.0', () => {
     console.log('App is running on %s port', port);
   });
 }
