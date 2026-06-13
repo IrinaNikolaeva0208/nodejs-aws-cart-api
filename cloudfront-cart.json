@@ -1,0 +1,35 @@
+{
+  "CallerReference": "cart-eb-https-20260613",
+  "Comment": "HTTPS proxy for cart Elastic Beanstalk API",
+  "Enabled": true,
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "cart-eb-origin",
+        "DomainName": "irinanikolaeva0208-cart-api-prod.eu-north-1.elasticbeanstalk.com",
+        "CustomOriginConfig": {
+          "HTTPPort": 80,
+          "HTTPSPort": 443,
+          "OriginProtocolPolicy": "http-only",
+          "OriginSslProtocols": { "Quantity": 1, "Items": ["TLSv1.2"] },
+          "OriginReadTimeout": 30,
+          "OriginKeepaliveTimeout": 5
+        }
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "cart-eb-origin",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "AllowedMethods": {
+      "Quantity": 7,
+      "Items": ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"],
+      "CachedMethods": { "Quantity": 2, "Items": ["GET", "HEAD"] }
+    },
+    "Compress": false,
+    "TrustedSigners": { "Enabled": false, "Quantity": 0 },
+    "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+    "OriginRequestPolicyId": "216adef6-5c7f-47e4-b989-5492eafa07d3"
+  }
+}
